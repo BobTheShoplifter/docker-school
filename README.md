@@ -11,6 +11,11 @@ All files of your website can be put inside of the site folder.
 
 In this example ive laid up for 2 builds 1 for master it will be tagged :latest andone for test branch that will be tagged with :test
 
+the two branches are depoyed here:
+
+[master](https://apz.websecured.io/)
+[test](https://apa.websecured.io/)
+
 
 ## Deployment of Master
 ```sh
@@ -74,5 +79,12 @@ For this we will use [watchtower](https://github.com/containrrr/watchtower)
 docker run -d --name watchtower -v /var/run/docker.sock:/var/run/docker.sock -v /var/config.json:/config.json containrrr/watchtower html-site --interval 15 --cleanup
 ```
 
-html-site = name of the container set ```--name html-site``` if you have multiple sites just add one after the space ex: ```html-site html-site-test```
+/var/config.json:/config.json = ~/.docker/config.json | This is just needed if you are logged in to gitlab via a private repo. If you dont need it remove the line ```-v /var/config.json:/config.json``` from the command.
+
+
+```sh
+cp ~/.docker/config.json /var/config.json
+```
+
+html-site = name of the container set ```--name html-site``` if you have multiple sites just add one after the space ex: ```html-site html-site-test```.
 
