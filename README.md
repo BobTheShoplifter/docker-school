@@ -24,17 +24,46 @@ docker run -d -p 80:80 --name nginx-proxy --net nginx-proxy -v /var/run/docker.s
 docker login registry.gitlab.com/bobtheshoplifter/docker-school:latest
 ###
 
-docker run --restart unless-stopped --name html-site --expose 80 --net nginx-proxy -e VIRTUAL_HOST=domain.site.com -d -p 8088:8088 registry.gitlab.com/bobtheshoplifter/docker-school:latest
+docker run --restart unless-stopped --name html-site --expose 80 --net nginx-proxy -e VIRTUAL_HOST=site.com -d -p 8080:8080 registry.gitlab.com/bobtheshoplifter/docker-school:latest
 ```
 
-After running these commands point the domain defined in ```VIRTUAL_HOST=domain.site.com``` to the server ip address
+After running these commands point the domain defined in ```VIRTUAL_HOST=site.com``` to the server ip address
 
 EX @ --> A --> 172.23.23.22
 @ = Domain root
 A = A record
 172.23.23.22 = The server ip address
 
+## Deployment of Test
+
+With docker you can publish multiple websites on the same server with the nginx-proxy we added.
+You will also need to name a branch test it is defined in the .gitlab-ci.yml that : 
+```yml
+  only:
+    - test
+```
+
+This means that only the test brach will build with the settings defined these settings can be set pretty complex and you can do a lot via this file.
+Me personaly like using the Dockerfile to do the build stuff.
+
+```sh
+### IF YOUR REPO IS PRIVATE YOU NEED TO RUN 
+docker login registry.gitlab.com/bobtheshoplifter/docker-school:test
+###
+
+docker run --restart unless-stopped --name html-site-test --expose 80 --net nginx-proxy -e VIRTUAL_HOST=test.site.com -d -p 8080:8080 registry.gitlab.com/bobtheshoplifter/docker-school:test
+```
+
+After running these commands point the domain defined in ```VIRTUAL_HOST=test.site.com``` to the server ip address
+
+EX test --> A --> 172.23.23.22
+test = Domain subdomain
+A = A record
+172.23.23.22 = The server ip address
+
 ### Auto updates of the website
+
+For this we will use [watchtower](https://github.com/containrrr/watchtower)
 
 ```sh
 docker run -d --name watchtower -v /var/run/docker.sock:/var/run/docker.sock -v /var/config.json:/config.json containrrr/watchtower html-site --interval 15 --cleanup
