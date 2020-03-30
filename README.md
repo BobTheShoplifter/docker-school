@@ -8,3 +8,13 @@ For the website files i wont be showing directly how to make it. Allthough it ca
 ## Example
 
 In this example ive laid up for 2 builds 1 for master it will be tagged :latest andone for test branch that will be tagged with :test
+
+
+### Deployment
+```sh
+docker network create nginx-proxy 
+
+docker pull jwilder/nginx-proxy:latest 
+
+docker run -d -p 80:80 --name nginx-proxy --net nginx-proxy -v /var/run/docker.sock:/tmp/docker.sock jwilder/nginx-proxy
+```
