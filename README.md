@@ -7,6 +7,11 @@ For the website files i wont be showing directly how to make it. Allthough it ca
 
 All files of your website can be put inside of the site folder.
 
+## Requirements
+
+* Linux Server | May be done on windows docker too but might be more tricky
+* Docker - [here](https://docs.docker.com/install/)
+
 ## Example
 
 In this example ive laid up for 2 builds 1 for master it will be tagged :latest andone for test branch that will be tagged with :test
