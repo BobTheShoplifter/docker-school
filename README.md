@@ -51,7 +51,7 @@ Me personaly like using the Dockerfile to do the build stuff.
 docker login registry.gitlab.com/bobtheshoplifter/docker-school:test
 ###
 
-docker run --restart unless-stopped --name html-site-test --expose 80 --net nginx-proxy -e VIRTUAL_HOST=test.site.com -d -p 8080:8080 registry.gitlab.com/bobtheshoplifter/docker-school:test
+docker run --restart unless-stopped --name html-site-test --expose 80 --net nginx-proxy -e VIRTUAL_HOST=test.site.com -d -p 8081:8081 registry.gitlab.com/bobtheshoplifter/docker-school:test
 ```
 
 After running these commands point the domain defined in ```VIRTUAL_HOST=test.site.com``` to the server ip address
@@ -69,5 +69,5 @@ For this we will use [watchtower](https://github.com/containrrr/watchtower)
 docker run -d --name watchtower -v /var/run/docker.sock:/var/run/docker.sock -v /var/config.json:/config.json containrrr/watchtower html-site --interval 15 --cleanup
 ```
 
-html-site = name of the container set ```--name html-site```
+html-site = name of the container set ```--name html-site``` if you have multiple sites just add one after the space ex: ```html-site html-site-test```
 
