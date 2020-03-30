@@ -11,6 +11,11 @@ All files of your website can be put inside of the site folder.
 
 In this example ive laid up for 2 builds 1 for master it will be tagged :latest andone for test branch that will be tagged with :test
 
+the two branches are depoyed here:
+
+[master](https://apz.websecured.io/)
+[test](https://apa.websecured.io/)
+
 
 ## Deployment of Master
 ```sh
