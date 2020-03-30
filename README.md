@@ -37,6 +37,9 @@ A = A record
 ## Deployment of Test
 
 With docker you can publish multiple websites on the same server with the nginx-proxy we added.
+
+You will see in this repo there is a branch named test you can look at.
+
 You will also need to name a branch test it is defined in the .gitlab-ci.yml that : 
 ```yml
   only:
@@ -45,6 +48,8 @@ You will also need to name a branch test it is defined in the .gitlab-ci.yml tha
 
 This means that only the test brach will build with the settings defined these settings can be set pretty complex and you can do a lot via this file.
 Me personaly like using the Dockerfile to do the build stuff.
+
+Branches can also be used before submitting a Merge request and via the gitlab CI it will wait untill the build is successfull on the test branch before merging to Master.
 
 ```sh
 ### IF YOUR REPO IS PRIVATE YOU NEED TO RUN 
