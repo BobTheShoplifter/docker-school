@@ -16,9 +16,9 @@ build-master:
     - docker push "$CI_REGISTRY_IMAGE"
   only:
     - master
-    except:
-      changes:
-        - "README.md"
+  except:
+    changes:
+      - "README.md"
 
 build-test:
   stage: build
