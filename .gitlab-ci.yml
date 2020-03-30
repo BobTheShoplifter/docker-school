@@ -16,9 +16,6 @@ build-master:
     - docker push "$CI_REGISTRY_IMAGE"
   only:
     - master
-  except:
-    changes:
-      - "README.md"
 
 build-test:
   stage: build
@@ -30,6 +27,3 @@ build-test:
     - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
   only:
     - test
-  except:
-    changes:
-      - "README.md"
