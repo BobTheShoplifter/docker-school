@@ -79,5 +79,5 @@ For this we will use [watchtower](https://github.com/containrrr/watchtower)
 docker run -d --name watchtower -v /var/run/docker.sock:/var/run/docker.sock -v /var/config.json:/config.json containrrr/watchtower html-site --interval 15 --cleanup
 ```
 
-html-site = name of the container set ```--name html-site``` if you have multiple sites just add one after the space ex: ```html-site html-site-test```.
+html-site = name of the container set ```--name html-site``` if you have multiple sites just add one after the space ex: ```html-site html-site-test```..
 
