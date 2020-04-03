@@ -3,8 +3,6 @@ image: docker:latest
 services:
   - docker:19.03.5-dind
 
-before_script:
-  - docker login -u "$CI_REGISTRY_USER_AZURE" -p "$CI_REGISTRY_PASSWORD_AZURE" dockerschool.azurecr.io
   
 build-master:
   stage: build
@@ -24,6 +22,8 @@ build-azure:
   environment:
     name: production
     url: http://website.com/
+  before_script:
+    - docker login -u $CI_REGISTRY_USER_AZURE -p $CI_REGISTRY_PASSWORD_AZURE dockerschool.azurecr.io
   script:
     - docker build --pull -t "$CI_REGISTRY_IMAGE" .
     - docker tag "$CI_REGISTRY_IMAGE" dockerschool.azurecr.io/samples/docker-school
