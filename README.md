@@ -93,3 +93,19 @@ cp ~/.docker/config.json /var/config.json
 
 html-site = name of the container set ```--name html-site``` if you have multiple sites just add one after the space ex: ```html-site html-site-test```.
 
+### Azure deployment
+
+Go to [Create container instance](https://portal.azure.com/#create/Microsoft.ContainerInstances) on Azure. This is done via the Container instances blade.
+
+![Create container instance](https://i.imgur.com/yscrSRl.png)
+
+Add in the info requested (It is suggested to make a new resource group) The image tab = registry.gitlab.com/urname/reponame:latest If you have a private repo you can add auth details.
+
+![Create container instance](https://i.imgur.com/HC0MFvw.png)
+
+Press next to the networking tab. Leave everything exept open port 443 TCP
+
+Go so to review and create and press create.
+
+On Build completion you have to restart your container in order for the site to update, you could integrate with Azure Container Registry to automate this. 
+
