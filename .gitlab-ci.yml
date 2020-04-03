@@ -4,22 +4,9 @@ services:
   - docker:19.03.5-dind
 
 before_script:
-  - docker login -u "$CI_REGISTRY_USER_AZURE" -p "$CI_REGISTRY_PASSWORD_AZURE" dockerschool.azurecr.io
-  
-build-master:
-  stage: build
-  environment:
-    name: production
-    url: http://website.com/
-  before_script:
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-  script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
-    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
-  only:
-    - master
+  - docker login -u $CI_REGISTRY_USER_AZURE -p $CI_REGISTRY_PASSWORD_AZURE dockerschool.azurecr.io
 
-build-azure:
+build-master:
   stage: build
   environment:
     name: production
@@ -36,8 +23,6 @@ build-test:
   environment:
     name: Development
     url: http://website.com/
-  before_script:
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
     - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
