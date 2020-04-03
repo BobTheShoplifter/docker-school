@@ -13,8 +13,8 @@ build-master:
     url: http://website.com/
   script:
     - docker build --pull -t "$CI_REGISTRY_IMAGE" .
-    - docker tag docker-school dockerschool.azurecr.io/samples/docker-school
-    - docker push "$CI_REGISTRY_IMAGE"
+    - docker tag "$CI_REGISTRY_IMAGE" dockerschool.azurecr.io/samples/docker-school
+    - docker push dockerschool.azurecr.io/samples/docker-school
   only:
     - master
 
