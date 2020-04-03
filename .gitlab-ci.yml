@@ -4,7 +4,7 @@ services:
   - docker:19.03.5-dind
 
 before_script:
-  - docker login -u $CI_REGISTRY_USER_AZURE -p $CI_REGISTRY_PASSWORD_AZURE dockerschool.azurecr.io
+  - docker login -u "$CI_REGISTRY_USER_AZURE" -p "$CI_REGISTRY_PASSWORD_AZURE" dockerschool.azurecr.io
   
 build-master:
   stage: build
