@@ -109,3 +109,4 @@ Go so to review and create and press create.
 
 On Build completion you have to restart your container in order for the site to update, you could integrate with Azure Container Registry to automate this. 
 
+Refer to Azure branch on builds
